@@ -7,56 +7,61 @@ const states = [
 ];
 
 const categories = [
-    "barbershop", "salon", "beauty", "tatoo", "nails", "piercings", "photography"
+    "barbershop", "salon", "beauty", "tattoo", "nails", "piercings", "photography"
 ];
 
-var accountSchema = {
+const accountSchema = new Schema({
 
     accountType: {
         type: String,
-        required: true,
+        required: "account type is required",
         enum: ['provider', 'user']
     },
+
     email: {
         type: String,
-        required: true,
+        required: "email is required",
         match: [/.+@.+\..+/, "Please enter a valid e-mail address"]
     },
+
     password: {
         type: String,
-        required: true,
-        minLength: 6,
-        maxLength: 12
+        required: "password is required",
+        validate: [({ length }) => length >= 6, "Password should be longer."]
     },
+
     userImageURL: {
         type: String,
-        required: true,
+        required: "",
         default: "../assets/defaultUser.png"
     },
+
     userName: {
         type: String,
-        required: true
+        required: "user name is required"
     },
+
     providerCategory: {
         type: String,
         enum: categories
     },
-    providerDescription: {
-        type: String,
-    },
-    providerCity: {
-        type: String,
-    },
+
+    providerDescription: String,
+
+    providerCity: String,
+
     providerState: {
         type: String,
         enum: states
     },
+
     createdDate: {
         type: Date,
         default: Date.now
     }
-}
 
-var user = mongoose.model("account", accountSchema);
+});
+
+var account = mongoose.model("account", accountSchema);
 
 module.exports = account;
