@@ -26,6 +26,7 @@ var accountSchema = {
     },
     userImageURL: {
         type: String,
+        required: true,
         default: "../assets/defaultUser.png"
     },
     userName: {
@@ -34,15 +35,12 @@ var accountSchema = {
     },
     providerDescription: {
         type: String,
-        // required: true
     },
     providerCity: {
         type: String,
-        // required: true
     },
     providerState: {
         type: String,
-        // required: true,
         enum: states
     },
     createdDate: {
@@ -53,4 +51,4 @@ var accountSchema = {
 
 var user = mongoose.model("account", accountSchema);
 
-module.exports = user;
+module.exports = account;
