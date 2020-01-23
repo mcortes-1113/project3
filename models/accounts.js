@@ -4,7 +4,11 @@ var Schema = mongoose.Schema;
 const states = [
     "AK","AL","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO",
     "MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"
-]
+];
+
+const categories = [
+    "barbershop", "salon", "beauty", "tatoo", "nails", "piercings", "photography"
+];
 
 var accountSchema = {
 
@@ -32,6 +36,10 @@ var accountSchema = {
     userName: {
         type: String,
         required: true
+    },
+    providerCategory: {
+        type: String,
+        enum: categories
     },
     providerDescription: {
         type: String,
